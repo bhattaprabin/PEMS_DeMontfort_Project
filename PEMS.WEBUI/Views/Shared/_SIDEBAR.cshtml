@@ -1,0 +1,135 @@
+﻿<!-- Side Navbar -->
+<nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <!-- User Info-->
+            <div class="sidenav-header-inner text-center">
+                <img src="~/Dashboard/img/earthquake-logo.gif" class="img-fluid" /> <span></span>
+            </div>
+            <!-- Small Brand information, appears on minimized sidebar-->
+            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>PE</strong><strong class="text-primary">MS</strong></a></div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu">
+            <!--<h5 class="sidenav-heading">Main</h5>-->
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li><a href="~/Home/Dashboard"> <i class="icon-home"></i>Home</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole(CommonVariables.SuperAdminRole) || User.IsInRole(CommonVariables.AdminRole))
+                    {
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#userManagementId">User</a>
+                            <ul class="collapse multi-collapse" id="userManagementId">
+                                <li>
+                                    <a href="~/Account/RegisterUser">Add User</a>
+                                </li>
+                                <li><a href="~/Account/UserList">User List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#SurveyId">Survey </a>
+                            <ul class="collapse multi-collapse" id="SurveyId">
+                                <li>
+                                    <a href="~/Survey/ImportSurveyData">Add Survey</a>
+                                </li>
+                                <li><a href="~/Survey/SurveySearchList">Survey Search</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#paymentId">Payment </a>
+                            <ul class="collapse multi-collapse" id="paymentId">
+                                <li>
+                                    <a href="~/Payment/ImportPaymentData">Add Payment</a>
+                                </li>
+                                <li><a href="~/Payment/PaymentSearchList">Payment Search</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#inspectionId">Inspection </a>
+                            <ul class="collapse multi-collapse" id="inspectionId">
+                                <li>
+                                    <a href="~/Inspection/ImportInspectionData">Add Inspection</a>
+                                </li>
+                                <li><a href="~/Inspection/InspectionSearchList">Inspection Search</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#donorId">Donor </a>
+                            <ul class="collapse multi-collapse" id="donorId">
+                                <li>
+                                    <a href="~/Donor/AddDonor">Add Donor</a>
+                                </li>
+                                <li><a href="~/Donor/SearchDonorList">Donor Search</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (User.IsInRole(CommonVariables.BankUser))
+                    {
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#paymentId">Payment </a>
+                            <ul class="collapse multi-collapse" id="paymentId">
+                                <li>
+                                    <a href="~/Payment/ImportPaymentData">Add Payment</a>
+                                </li>
+                                <li><a href="~/Payment/PaymentSearchList">Payment Search</a></li>
+                            </ul>
+                        </li>
+
+                    }
+
+                    else if (User.IsInRole(CommonVariables.SurveyEngineer))
+                    {
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#SurveyId">Survey </a>
+                            <ul class="collapse multi-collapse" id="SurveyId">
+                                <li>
+                                    <a href="~/Survey/ImportSurveyData">Add Survey</a>
+                                </li>
+                                <li><a href="~/Survey/SurveySearchList">Survey Search</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (User.IsInRole(CommonVariables.InspectionEngineer))
+                    {
+                        <li>
+                            <a data-toggle="collapse" aria-expanded="false" href="#paymentId">Inspection </a>
+                            <ul class="collapse multi-collapse" id="paymentId">
+                                <li>
+                                    <a href="~/Inspection/ImportInspectionData">Add Inspection</a>
+                                </li>
+                                <li><a href="~/Inspection/InspectionSearchList">Inspection Search</a></li>
+                            </ul>
+                        </li>
+
+                    }
+                }
+                <li>
+                    <a data-toggle="collapse" aria-expanded="false" href="#reportId">Report </a>
+                    <ul class="collapse multi-collapse" id="reportId">
+                        @if (User.IsInRole(CommonVariables.SurveyEngineer) || User.IsInRole(CommonVariables.SuperAdminRole) || User.IsInRole(CommonVariables.AdminRole))
+                        {
+                            <li>
+                                <a href="~/Report/GetReportName/Survey">Survey Report</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(CommonVariables.BankUser) || User.IsInRole(CommonVariables.SuperAdminRole) || User.IsInRole(CommonVariables.AdminRole))
+                        {
+                            <li>
+                                <a href="~/Report/GetReportName/Payment">Payment Report</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(CommonVariables.SurveyEngineer) || User.IsInRole(CommonVariables.SuperAdminRole) || User.IsInRole(CommonVariables.AdminRole))
+                        {
+                            <li>
+                                <a href="~/Report/GetReportName/Inspection">Inspection Report</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

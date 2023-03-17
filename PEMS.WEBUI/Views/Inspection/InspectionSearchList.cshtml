@@ -1,0 +1,156 @@
+﻿@model PEMS.BusinessLayer.InspectionModel.InspectionViewModel
+@{
+    ViewBag.Title = "Inspection Search";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inspection</a></li>
+            <li class="breadcrumb-item active">@ViewBag.Title</li>
+        </ul>
+    </div>
+</div>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>
+                                Search Criteria
+                                @Html.ActionLink("Add", "ImportSurveyData", "Survey", null, new { @class = "btn btn-primary btn-large pull-right" })
+                            </h4>
+                            @using (Html.BeginForm("RegisterUser", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <hr />
+                                <div class="row">
+                                    @{
+                                        var stateList = new List<SelectListItem>();
+                                        stateList.Add(new SelectListItem() { Text = "---Select State---", Value = "" });
+                                        stateList.Add(new SelectListItem() { Text = "Leicestershire", Value = "1" });
+                                    }
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                        <label>State</label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        @Html.DropDownListFor(m => m.StateId, stateList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                    </div>
+                                    @{
+                                        var cityList = new List<SelectListItem>();
+                                        cityList.Add(new SelectListItem() { Text = "---Select City---", Value = "" });
+                                        cityList.Add(new SelectListItem() { Text = "Leicester", Value = "1" });
+                                        cityList.Add(new SelectListItem() { Text = "Hinckley", Value = "2" });
+                                    }
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                        <label>City</label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        @Html.DropDownListFor(m => m.CityId, cityList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                        <label>Ben Id</label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        @Html.TextBoxFor(m => m.BenId, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.BenId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                        <label>Inspection Level</label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        @{
+                                            var inspectionList = new List<SelectListItem>();
+                                            inspectionList.Add(new SelectListItem() { Text = "---Select Inspection Level---", Value = "" });
+                                            inspectionList.Add(new SelectListItem() { Text = "Level 1", Value = "1"  });
+                                            inspectionList.Add(new SelectListItem() { Text = "Level 2", Value = "2"  });
+                                            inspectionList.Add(new SelectListItem() { Text = "Level 3", Value = "3"  });
+                                        }
+                                        @Html.DropDownListFor(m => m.InspectionLevel, inspectionList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.InspectionLevel, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                    </div>
+                                    <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="submit" value="Search" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="InspectionID" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#InspectionID').DataTable({
+            "ajax": {
+                "url": "/Inspection/GetInspectionData",
+                "type": "GET",
+                "datatype": "json",
+            },
+            dom: 'Bfrtip',
+            columns: [
+                {
+                    title: 'SN', data: "BenId", render: function (data, type, full, meta) {
+                        return meta.row + 1;
+                    }
+                },
+                { title: 'Ben Id', data: "BenId", width: "15%" },
+                { title: 'State', data: "StateName" },
+                { title: 'City', data: "CityName" },
+                { title: 'Inspection Level', data: "InspectionLevel" },
+                 {
+                     title: 'Action', data: "OwnerId", render: function (data, type, full, meta) {
+                    var hReF1 = '@Url.Action("EditInspectionData", "Inspection", null)?id2=' + full.OwnerId +
+                        '&noise=' + Math.floor(5000 + Math.random() * 10000);
+                        debugger;
+                        var inspectionEditDeleteLink = '';
+                         inspectionEditDeleteLink = '<a class="btn btn-info" style="margin-right:5px;" style="text-decoration:none" href="' + hReF1 + '" target="_blank" >Edit</a>'
+                             + '<a class="btn btn-danger" style="text-decoration:none" href="' + hReF1 + '" target="_blank" >Delete</a>'
+                         return inspectionEditDeleteLink;
+                    }
+                },
+            ],
+            buttons: [
+                'pdf',
+                'excel',
+                'print',
+                'csv'
+            ]
+        });
+    });
+</script>

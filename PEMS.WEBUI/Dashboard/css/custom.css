@@ -1,0 +1,52 @@
+/* your styles go here */
+.dashboard-header h2{color:#0073aa; font-weight:600 !important; margin-bottom: 30px;}
+.dash-center{border-left:1px solid #eee; border-right:1px solid #eee;}
+.palika-info li{padding:.75rem 0rem}
+.dashboard-header .card{padding:30px 0px;}
+.palika-info li strong{font-size:1em;}
+.palika-info .update-date{color:#4cb748;}
+.side-navbar.shrink .brand-small:hover{text-decoration:none !important;}
+
+
+.quick-btn-sec, .calendar_sec{padding:20px 0px;}
+.quick-btn {
+    background: #f4f7fa;
+    -webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
+    box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
+    color: #444;
+    display: inline-block;
+    height: 100px;
+    margin: 10px;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 152px;
+    position: relative;
+}
+.quick-btn i{font-size: 2.5em; color: #0073aa; 
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	-ms-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+	}
+.quick-btn span {
+    display: block;
+    color: #000;
+    font-weight:400
+}
+.quick-btn:hover{text-decoration: none; color: #fff; background-color: #4d7589;}
+.quick-btn:focus{text-decoration: none;}
+.quick-btn:hover i, .quick-btn:hover span{color: #fff;}
+.quick-btn:hover i{
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+.drop-table{right:0; left:auto; padding:0px;}
+.drop-table table{min-width:500px; margin-bottom:0px;}
+.drop-table table tr th, .drop-table table tr td{font-size:12px; padding:8px; vertical-align:middle; line-height:20px;}
+.responsive_side{max-height:200px; overflow-y:auto; overflow-x:hidden;}
+.responsive_side table tr td button{font-size:12px; padding:2px 15px !important;}

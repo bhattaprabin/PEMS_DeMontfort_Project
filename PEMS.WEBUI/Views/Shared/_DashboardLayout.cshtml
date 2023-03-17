@@ -1,0 +1,127 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.DisplayHeader</title>
+    <!-- Bootstrap CSS-->
+    <link href="~/Dashboard/vendor/bootstrap/css/bootstrap-grid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Dashboard/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/Dashboard/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="~/Dashboard/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="~/Dashboard/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="~/Dashboard/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/Dashboard/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/Dashboard/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/Dashboard/img/favicon.gif">
+
+
+
+    @*<script src="~/Dashboard/vendor/jquery/jquery.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+
+    @*-------------------------added by Prabin-----------------------------------------------------*@
+    @*<link href="~/Content/toastr.min.css" rel="stylesheet" />
+        <script src="~/Scripts/toastr.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
+</head>
+<body>
+    <div class="container body-content" id="body">
+        @Html.Partial("_SIDEBAR")
+        <div class="page">
+            @Html.Partial("_HEADER")
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <!-- JavaScript files-->
+    <script src="~/Dashboard/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="~/Dashboard/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Dashboard/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="~/Dashboard/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    @*<script src="~/Dashboard/vendor/chart.js/Chart.min.js"></script>*@
+    <script src="~/Dashboard/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Dashboard/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Main File-->
+    <script src="~/Dashboard/js/front.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+    <script src="~/Dashboard/jquery-loader.js"></script>
+
+
+    @*<script src="~/Scripts/jquery.slimscroll.min.js"></script>*@
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+</body>
+</html>
+
+
+<script>
+
+    $(document).ready(function () {
+        //$('.sidebar-wrapper').slimScroll({
+        //    height: screen.height - 230
+        //});
+        $('#example').DataTable({
+            "dom": '<lf<t>ip>',
+            aLengthMenu: [
+                [10, 20, 50, 100, -1],
+                [10, 20, 50, 100, "All"]
+            ],
+        });
+        $('#example1').DataTable({
+
+            "dom": 'lrtip',
+            //"dom": '<"wrapper"flipt>',
+            aLengthMenu: [
+                [2, 4, 6, 10, -1],
+                [2, 4, 6, 10, "All"]
+            ],
+
+        });
+
+
+    });
+
+    var loaderScript = {
+        loaderOpen: function () {
+
+            $.blockUI({ message: '<img src="../../Dashboard/Eclipse-1s-153px.svg" />', css: { backgroundColor: 'rgba(255, 255, 255, 0)', border: '0px;' } });
+        },
+        loaderClose: function () {
+            $.unblockUI();
+        },
+    }
+    function GetFileSize() {
+        debugger;
+        var fi = document.getElementById('file'); // GET THE FILE INPUT.
+        // VALIDATE OR CHECK IF ANY FILE IS SELECTED.
+        if (fi.files.length > 0) {
+            var fsize = fi.files.item(0).size;
+            var fname = fi.files.item(0).name;
+            if (fsize > 8388608) {
+                alert("Excel size must be less than 8 Mb.")
+                $('#file').val('');
+            }
+            var fnameArray = fname.split('.');
+            if (fnameArray[1] != "xlsx") {
+                alert("Please inupt file in .xlsx format.")
+                $('#file').val('');
+            }
+        }
+    }
+</script>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f32ba5124228473281b55a19f4c3bf4d" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="PEMSDBModel.Bank" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.BankBranch" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.BeneficiaryBankMapping" Width="1.5" PointX="15.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.BeneficiaryDetail" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.Evaluation" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.Gender" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.Role" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.Survey" Width="1.5" PointX="3.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PEMSDBModel.User" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="PEMSDBModel.FK_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_MAPPINGBank" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_MAPPINGBankBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_BENEFICIARYSurvey" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_Evaluation_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_Survey_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="PEMSDBModel.FK_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PEMSDBModel.City" Width="1.5" PointX="10.625" PointY="6.5" />
+        <EntityTypeShape EntityType="PEMSDBModel.PostCode" Width="1.5" PointX="12.875" PointY="6.75" />
+        <EntityTypeShape EntityType="PEMSDBModel.State" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="PEMSDBModel.SurveyFilesInfo" Width="1.5" PointX="12.875" PointY="9.375" />
+        <AssociationConnector Association="PEMSDBModel.FK_City_State" />
+        <AssociationConnector Association="PEMSDBModel.FK_PostCode_City" />
+        <AssociationConnector Association="PEMSDBModel.FK_SurveyFilesInfo_City" />
+        <AssociationConnector Association="PEMSDBModel.FK_SurveyFilesInfo_State" />
+        <EntityTypeShape EntityType="PEMSDBModel.Payment" Width="1.5" PointX="8.25" PointY="9.625" />
+        <AssociationConnector Association="PEMSDBModel.FK_Payment_BENEFICIARY" />
+        <EntityTypeShape EntityType="PEMSDBModel.PaymentFilesInfo" Width="1.5" PointX="15.875" PointY="6.375" />
+        <AssociationConnector Association="PEMSDBModel.FK_PaymentFilesInfo_City" />
+        <AssociationConnector Association="PEMSDBModel.FK_PaymentFilesInfo_State" />
+        <EntityTypeShape EntityType="PEMSDBModel.Donor" Width="1.5" PointX="7.25" PointY="1.375" />
+        <EntityTypeShape EntityType="PEMSDBModel.Inspection" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="PEMSDBModel.InspectionFilesInfo" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PEMSDBModel.EmailsForAlertMessage" Width="1.5" PointX="10.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

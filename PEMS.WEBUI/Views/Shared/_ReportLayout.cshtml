@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Post- Earthquake Management System";
+ }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />*@
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" />
+        @*<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>*@
+        @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>*@
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/rowgroup/1.0.2/js/dataTables.rowGroup.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        @*<div class="col-md-2">
+            <img class="img-responsive logo" style="height:160px;" src="~/Dashboard/img/earthquake-logo.gif" />
+        </div>*@
+        <div class="col-md-12">
+            <img class="img-responsive center-block logo" src="~/Dashboard/img/earthquake-logo.gif" style="height:100px;" />
+            @*<img src="~/Dashboard/img/earthquake-logo.gif" class="img-fluid" /> <span></span>*@
+            <div class="text-center" style='color: rgb(60, 118, 61); font-size: 22px; '>
+                @ViewBag.Title
+            </div>
+            <div class="text-center" style='color: rgb(60, 118, 61); font-size: 22px; '>
+                98 Narborough Road, LE3 0BS
+            </div>
+            <div class="text-center" style='color: rgb(60, 118, 61); font-size: 22px; '>
+                Leicester, United Kingdom
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin:20px">
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,73 @@
+﻿@model PEMS.BusinessLayer.ReportModel.ReportViewModel
+@{
+    ViewBag.Title = "Inspection Detail Report";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+
+<body>
+    <section>
+        <div class="container-fluid">
+            @Html.HiddenFor(m => m.BeneficiaryId)
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 style="color:forestgreen">@ViewBag.Title</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="InspectionDetailReportID" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function () {
+        var stateId = @Html.Raw(Json.Encode(Model.StateId));
+        var cityId = @Html.Raw(Json.Encode(Model.CityId));
+        var inspLevel = @Html.Raw(Json.Encode(Model.OwnerId));
+        var beneficiaryId = $("#BeneficiaryId").val();
+        debugger;
+        $('#InspectionDetailReportID').DataTable({
+            "ajax": {
+                "url": '@Url.Action("GetInspectionDetailData", "Report")?StateId=' + stateId + "&CityId=" + cityId +
+                    "&InspLevel=" + inspLevel + "&BenId=" + beneficiaryId,
+                "type": "GET",
+                "datatype": "json",
+            },
+            "lengthMenu": [[100, 200, 500, 1000, -1], [100, 200, 500, 1000, "All"]],
+            "order": [[0, 'asc'], [1, 'asc']],
+            "paging": true,
+            dom: 'lBfrtip',
+            "bSort": true,
+            columns: [
+                {
+                    title: 'SN', data: "StateName", render: function (data, type, full, meta) {
+                        debugger;
+                        return meta.row + 1;
+                    }
+                },
+                { title: 'State', data: "StateName", width: "15%" },
+                { title: 'City', data: "CityName", width: "15%" },
+                { title: 'Ben Id', data: "BenId", width: "15%" },
+                { title: 'Beneficiary Name', data: "FullName", width: "15%" },
+                { title: 'Inspection Level', data: "InspectionLevel" },
+            ],
+            buttons: [
+                'csv', {
+                    extend: 'excelHtml5',
+                    title: 'Survey_Detail_Report'
+                }, 'pdf'
+            ]
+        });
+    });
+</script>

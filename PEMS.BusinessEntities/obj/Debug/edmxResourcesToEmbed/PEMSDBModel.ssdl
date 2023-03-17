@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PEMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="BankCode" />
+    </Key>
+    <Property Name="BankCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="BankName" Type="char" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankBranch">
+    <Key>
+      <PropertyRef Name="BranchCode" />
+    </Key>
+    <Property Name="BranchCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="BankCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="BranchName" Type="char" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeneficiaryBankMapping">
+    <Key>
+      <PropertyRef Name="BenId" />
+    </Key>
+    <Property Name="MappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BenId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BankCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="BranchCode" Type="char" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeneficiaryDetail">
+    <Key>
+      <PropertyRef Name="BenId" />
+    </Key>
+    <Property Name="BenId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="BeneficiaryName" Type="char" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="PostCodeId" Type="int" />
+    <Property Name="BenContactNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+  </EntityType>
+  <EntityType Name="Donor">
+    <Key>
+      <PropertyRef Name="DonorCode" />
+    </Key>
+    <Property Name="DonorCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="DonorName" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="WebsiteURL" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmailsForAlertMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Evaluation">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="EvaluationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="BeneficiaryType" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="EvaluatedBy" Type="int" />
+    <Property Name="EvaluatedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderCode" />
+    </Key>
+    <Property Name="GenderCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="GenderType" Type="char" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inspection">
+    <Key>
+      <PropertyRef Name="InspectionId" />
+    </Key>
+    <Property Name="InspectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BenId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="InspectionLevel" Type="int" Nullable="false" />
+    <Property Name="InspectionDate" Type="date" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="50" />
+    <Property Name="InspectedBy" Type="int" />
+    <Property Name="InspectedDate" Type="date" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+    <Property Name="FileId" Type="int" />
+  </EntityType>
+  <EntityType Name="InspectionFilesInfo">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BenId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Installment" Type="int" />
+    <Property Name="PaymentDate" Type="date" />
+    <Property Name="Amount" Type="char" MaxLength="10" />
+    <Property Name="DonorCode" Type="char" MaxLength="5" />
+    <Property Name="FileId" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="10" />
+    <Property Name="BankCode" Type="char" MaxLength="5" />
+    <Property Name="EnteredBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PaymentFilesInfo">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+  </EntityType>
+  <EntityType Name="PostCode">
+    <Key>
+      <PropertyRef Name="PostCodeId" />
+    </Key>
+    <Property Name="PostCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostCodeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRole" Type="char" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Survey">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="SurveyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="OwnerFirstName" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="OwnerLastName" Type="char" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="PostCodeId" Type="int" />
+    <Property Name="GenderCode" Type="char" MaxLength="2" />
+    <Property Name="OwnerPhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="DamageStatus" Type="char" MaxLength="10" />
+    <Property Name="FrontHousePhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="LeftHousePhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="RightHousePhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="BackHousePhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="SurveyedBy" Type="int" />
+    <Property Name="SurveyedDate" Type="date" />
+    <Property Name="FileId" Type="int" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+  </EntityType>
+  <EntityType Name="SurveyFilesInfo">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnteredBy" Type="int" />
+    <Property Name="EnteredDate" Type="date" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="char" MaxLength="30" />
+    <Property Name="Email" Type="char" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="FirstName" Type="char" MaxLength="50" />
+    <Property Name="LastName" Type="char" MaxLength="50" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Bank">
+    <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+    <End Role="BankBranch" Type="Self.BankBranch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bank">
+        <PropertyRef Name="BankCode" />
+      </Principal>
+      <Dependent Role="BankBranch">
+        <PropertyRef Name="BankCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCode_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="PostCode" Type="Self.PostCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="PostCode">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Survey_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Survey" Type="Self.Survey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderCode" />
+      </Principal>
+      <Dependent Role="Survey">
+        <PropertyRef Name="GenderCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Sp_GetSurveyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SurveyId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="PEMSDBModelStoreContainer">
+    <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankBranch" EntityType="Self.BankBranch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeneficiaryBankMapping" EntityType="Self.BeneficiaryBankMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeneficiaryDetail" EntityType="Self.BeneficiaryDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donor" EntityType="Self.Donor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailsForAlertMessage" EntityType="Self.EmailsForAlertMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Evaluation" EntityType="Self.Evaluation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inspection" EntityType="Self.Inspection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InspectionFilesInfo" EntityType="Self.InspectionFilesInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentFilesInfo" EntityType="Self.PaymentFilesInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostCode" EntityType="Self.PostCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurveyFilesInfo" EntityType="Self.SurveyFilesInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bank" Association="Self.FK_Bank">
+      <End Role="Bank" EntitySet="Bank" />
+      <End Role="BankBranch" EntitySet="BankBranch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCode_City" Association="Self.FK_PostCode_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="PostCode" EntitySet="PostCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Survey_Gender" Association="Self.FK_Survey_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Survey" EntitySet="Survey" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

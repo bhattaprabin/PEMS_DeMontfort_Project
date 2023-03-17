@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PEMSDBModelStoreContainer" CdmEntityContainer="PEMSDBEntities">
+    <EntitySetMapping Name="Banks">
+      <EntityTypeMapping TypeName="PEMSDBModel.Bank">
+        <MappingFragment StoreEntitySet="Bank">
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankBranches">
+      <EntityTypeMapping TypeName="PEMSDBModel.BankBranch">
+        <MappingFragment StoreEntitySet="BankBranch">
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeneficiaryBankMappings">
+      <EntityTypeMapping TypeName="PEMSDBModel.BeneficiaryBankMapping">
+        <MappingFragment StoreEntitySet="BeneficiaryBankMapping">
+          <ScalarProperty Name="MappingId" ColumnName="MappingId" />
+          <ScalarProperty Name="BenId" ColumnName="BenId" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeneficiaryDetails">
+      <EntityTypeMapping TypeName="PEMSDBModel.BeneficiaryDetail">
+        <MappingFragment StoreEntitySet="BeneficiaryDetail">
+          <ScalarProperty Name="PostCodeId" ColumnName="PostCodeId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="BenContactNumber" ColumnName="BenContactNumber" />
+          <ScalarProperty Name="BenId" ColumnName="BenId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Evaluations">
+      <EntityTypeMapping TypeName="PEMSDBModel.Evaluation">
+        <MappingFragment StoreEntitySet="Evaluation">
+          <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="BeneficiaryType" ColumnName="BeneficiaryType" />
+          <ScalarProperty Name="EvaluatedBy" ColumnName="EvaluatedBy" />
+          <ScalarProperty Name="EvaluatedDate" ColumnName="EvaluatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="PEMSDBModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+          <ScalarProperty Name="GenderType" ColumnName="GenderType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="PEMSDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Surveys">
+      <EntityTypeMapping TypeName="PEMSDBModel.Survey">
+        <MappingFragment StoreEntitySet="Survey">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="PostCodeId" ColumnName="PostCodeId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+          <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+          <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+          <ScalarProperty Name="OwnerPhoneNumber" ColumnName="OwnerPhoneNumber" />
+          <ScalarProperty Name="DamageStatus" ColumnName="DamageStatus" />
+          <ScalarProperty Name="FrontHousePhoto" ColumnName="FrontHousePhoto" />
+          <ScalarProperty Name="LeftHousePhoto" ColumnName="LeftHousePhoto" />
+          <ScalarProperty Name="RightHousePhoto" ColumnName="RightHousePhoto" />
+          <ScalarProperty Name="BackHousePhoto" ColumnName="BackHousePhoto" />
+          <ScalarProperty Name="SurveyedBy" ColumnName="SurveyedBy" />
+          <ScalarProperty Name="SurveyedDate" ColumnName="SurveyedDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PEMSDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_GetSurveyList" FunctionName="PEMSDBModel.Store.Sp_GetSurveyList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PEMSDBModel.Sp_GetSurveyList_Result">
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="OwnerFirstName" ColumnName="OwnerFirstName" />
+          <ScalarProperty Name="OwnerLastName" ColumnName="OwnerLastName" />
+          <ScalarProperty Name="DistCd" ColumnName="DistCd" />
+          <ScalarProperty Name="MunCd" ColumnName="MunCd" />
+          <ScalarProperty Name="Ward" ColumnName="Ward" />
+          <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+          <ScalarProperty Name="OwnerPhoneNumber" ColumnName="OwnerPhoneNumber" />
+          <ScalarProperty Name="DamageStatus" ColumnName="DamageStatus" />
+          <ScalarProperty Name="FrontHousePhoto" ColumnName="FrontHousePhoto" />
+          <ScalarProperty Name="LeftHousePhoto" ColumnName="LeftHousePhoto" />
+          <ScalarProperty Name="RightHousePhoto" ColumnName="RightHousePhoto" />
+          <ScalarProperty Name="BackHousePhoto" ColumnName="BackHousePhoto" />
+          <ScalarProperty Name="SurveyedBy" ColumnName="SurveyedBy" />
+          <ScalarProperty Name="SurveyedDate" ColumnName="SurveyedDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="PEMSDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostCodes">
+      <EntityTypeMapping TypeName="PEMSDBModel.PostCode">
+        <MappingFragment StoreEntitySet="PostCode">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="PostCodeName" ColumnName="PostCodeName" />
+          <ScalarProperty Name="PostCodeId" ColumnName="PostCodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="PEMSDBModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyFilesInfoes">
+      <EntityTypeMapping TypeName="PEMSDBModel.SurveyFilesInfo">
+        <MappingFragment StoreEntitySet="SurveyFilesInfo">
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="PEMSDBModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="DonorCode" ColumnName="DonorCode" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Installment" ColumnName="Installment" />
+          <ScalarProperty Name="BenId" ColumnName="BenId" />
+          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentFilesInfoes">
+      <EntityTypeMapping TypeName="PEMSDBModel.PaymentFilesInfo">
+        <MappingFragment StoreEntitySet="PaymentFilesInfo">
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donors">
+      <EntityTypeMapping TypeName="PEMSDBModel.Donor">
+        <MappingFragment StoreEntitySet="Donor">
+          <ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+          <ScalarProperty Name="DonorCode" ColumnName="DonorCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inspections">
+      <EntityTypeMapping TypeName="PEMSDBModel.Inspection">
+        <MappingFragment StoreEntitySet="Inspection">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="InspectedDate" ColumnName="InspectedDate" />
+          <ScalarProperty Name="InspectedBy" ColumnName="InspectedBy" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="InspectionDate" ColumnName="InspectionDate" />
+          <ScalarProperty Name="InspectionLevel" ColumnName="InspectionLevel" />
+          <ScalarProperty Name="BenId" ColumnName="BenId" />
+          <ScalarProperty Name="InspectionId" ColumnName="InspectionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InspectionFilesInfoes">
+      <EntityTypeMapping TypeName="PEMSDBModel.InspectionFilesInfo">
+        <MappingFragment StoreEntitySet="InspectionFilesInfo">
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailsForAlertMessages">
+      <EntityTypeMapping TypeName="PEMSDBModel.EmailsForAlertMessage">
+        <MappingFragment StoreEntitySet="EmailsForAlertMessage">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

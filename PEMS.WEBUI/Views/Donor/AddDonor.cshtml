@@ -1,0 +1,105 @@
+﻿@model PEMS.BusinessLayer.DonorModel.DonorViewModel
+@{
+    ViewBag.Title = "Add Donor";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Donor</a></li>
+            <li class="breadcrumb-item active"><b>@ViewBag.Title</b></li>
+        </ul>
+    </div>
+</div>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    @using (Html.BeginForm("AddDonor", "Donor", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", ReturnUrl = ViewBag.ReturnUrl, onsubmit = "validateForm(event)", onsuccess = "SuccessMessage()", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Donor Code</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.DonorCode, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DonorCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Donor Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.DonorName, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DonorName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Phone Number</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.PhoneNumber, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Website Url</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.WebsiteURL, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.WebsiteURL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    function spaceTrim(x) {
+        return x.replace(/^\s+|\s+$/gm, '');
+    }
+    function validateForm(event) {
+        debugger;
+        if (spaceTrim($("#DonorCode").val()) == "") {
+            toastr.error("Donor Code is required", "Error");
+            event.preventDefault();
+            return false;
+        }
+        if (spaceTrim($("#DonorName").val()) == "") {
+            toastr.error("Donor Name is required.", "Error");
+            event.preventDefault();
+            return false;
+        }
+    }
+    function SuccessMessage() {
+        toastr.success("User Added Successfully..!!", "Success");
+    }
+</script>

@@ -1,0 +1,163 @@
+﻿@model PEMS.BusinessLayer.SurveyModel.SurveyViewModel
+@{
+    ViewBag.Title = "Survey Evaluation";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Survey</a></li>
+            <li class="breadcrumb-item active"><b>@ViewBag.Title</b></li>
+        </ul>
+    </div>
+</div>
+<body>
+    @using (Html.BeginForm("SurveyEvaluation", "Survey", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <section>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Personal Info</h4>
+                        <hr />
+                        @Html.HiddenFor(m=>m.OwnerId)
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>First Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.OwnerFirstName, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.OwnerFirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Last Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.OwnerLastName, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.OwnerLastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            @{
+                                var stateList = new List<SelectListItem>();
+                                stateList.Add(new SelectListItem() { Text = "---Select State---", Value = "" });
+                                stateList.Add(new SelectListItem() { Text = "Leicestershire", Value = "1" });
+                            }
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>State</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.DropDownListFor(m => m.StateId, stateList, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                            </div>
+                            @{
+                                var cityList = new List<SelectListItem>();
+                                cityList.Add(new SelectListItem() { Text = "---Select City---", Value = "" });
+                                cityList.Add(new SelectListItem() { Text = "Leicester", Value = "1" });
+                                cityList.Add(new SelectListItem() { Text = "Hinckley", Value = "2" });
+                            }
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.DropDownListFor(m => m.CityId, cityList, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Post Code</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.PostCodeId, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.PostCodeId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Phone Number</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(m => m.OwnerPhoneNumber, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.OwnerPhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Damage House Info</h4>
+                        <hr />
+                        <div class="row menu-list">
+                            <div class="col-md-6 col-sm-4 col-xs-12 menu-list-col">
+                                <img src="~/Dashboard/img/reconstructed_house1.png">
+                            </div>
+                            <div class="col-md-6 col-sm-4 col-xs-12 menu-list-col">
+                                <img src="~/Dashboard/img/reconstructed_house1.png">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-4 col-xs-12 control-label">
+                                Figure: Front House Photo
+                            </div>
+                            <div class="col-md-6 col-sm-4 col-xs-12 control-label">
+                                Figure: Back House Photo
+                            </div>
+                        </div>
+                        <div class="row menu-list">
+                            <div class="col-md-6 col-sm-4 col-xs-12 menu-list-col">
+                                <img src="~/Dashboard/img/reconstructed_house1.png">
+                            </div>
+                            <div class="col-md-6 col-sm-4 col-xs-12 menu-list-col">
+                                <img src="~/Dashboard/img/reconstructed_house1.png">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-4 col-xs-12 control-label">
+                                Figure: Left House Photo
+                            </div>
+                            <div class="col-md-6 col-sm-4 col-xs-12 control-label">
+                                Figure: Right House Photo
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            @{
+                                var damageLevel = new List<SelectListItem>();
+                                damageLevel.Add(new SelectListItem() { Text = "---Select Damage Level---", Value = "" });
+                                damageLevel.Add(new SelectListItem() { Text = "High", Value = "High" });
+                                damageLevel.Add(new SelectListItem() { Text = "Medium", Value = "Medium" });
+                                damageLevel.Add(new SelectListItem() { Text = "Low", Value = "Low" });
+                            }
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                <label>Damage Level</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.DropDownListFor(m => m.DamageStatus, damageLevel, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DamageStatus, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <input type="submit" value="Evaluate" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</body>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+
+

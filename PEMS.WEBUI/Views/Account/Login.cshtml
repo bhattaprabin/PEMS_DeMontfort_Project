@@ -1,0 +1,85 @@
+﻿@model PEMS.BusinessLayer.UserModel.LogInViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Dashboard/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="~/Dashboard/vendor/font-awesome/css/font-awesome.min.css">
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="~/Dashboard/css/fontastic.css">
+<!-- Google fonts - Roboto -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<!-- jQuery Circle-->
+<link rel="stylesheet" href="~/Dashboard/css/grasp_mobile_progress_circle-1.0.0.min.css">
+<!-- Custom Scrollbar-->
+<link rel="stylesheet" href="~/Dashboard/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="~/Dashboard/css/style.default.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="~/Dashboard/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="~/assets/images/favicon.ico">
+<div class="container">
+    <div class="page login-page">
+        <div class="form-outer text-center d-flex align-items-center login_box">
+            <div class="form-inner">
+
+                <div class="logo text-uppercase">
+                    <figure>
+                        <img src="~/Dashboard/img/earthquake-logo.gif" alt="PEMS" width="150" height="50" />
+                    </figure>
+
+
+                </div>
+                <div>
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <span class="text-danger"> @ViewBag.ErrorMessage</span>}
+
+                </div>
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group-material">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "input-material", placeholder = "User Name", required = "", autofocus = "" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group-material">
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-material", placeholder = "Password", required = "", autofocus = "" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+
+                    @*<div class="form-group-material">
+                        @Html.ActionLink("New Registraion", "register")
+                    </div>*@
+                }
+
+            </div>
+            <div class="copyrights text-center">
+                <p>Developed by <a href="#" target="_blank" class="external">Prabin Bhatta</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Dashboard/vendor/jquery/jquery.min.js"></script>
+<script src="~/Dashboard/vendor/popper.js/umd/popper.min.js"></script>
+<script src="~/Dashboard/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Dashboard/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+<script src="~/Dashboard/vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="~/Dashboard/vendor/chart.js/Chart.min.js"></script>
+<script src="~/Dashboard/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/Dashboard/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- Main File-->
+<script src="~/Dashboard/js/front.js"></script>

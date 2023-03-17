@@ -1,0 +1,63 @@
+﻿@model PEMS.BusinessLayer.ReportModel.ReportViewModel
+@{
+    ViewBag.Title = "Payment Summary Report";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 style="color:forestgreen">@ViewBag.Title</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="SurveySummarryReportID" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function () {
+        var stateId = @Html.Raw(Json.Encode(Model.StateId));
+        var cityId = @Html.Raw(Json.Encode(Model.CityId));
+        debugger;
+        $('#SurveySummarryReportID').DataTable({
+            "ajax": {
+                "url": '@Url.Action("GetSurveySummaryData", "Report")?StateId=' + stateId + "&CityId=" + cityId,
+                "type": "GET",
+                "datatype": "json",
+            },
+            "lengthMenu": [[100, 200, 500, 1000, -1], [100, 200, 500, 1000, "All"]],
+            "order": [[0, 'asc'], [1, 'asc']],
+            "paging": true,
+            dom: 'lBfrtip',
+            "bSort": true,
+            columns: [
+
+                { title: 'Owner Id', data: "OwnerId", width: "15%" },
+                { title: 'Beneficiary Name', data: "OwnerFullName" },
+                { title: 'Phone Number', data: "OwnerPhoneNumber" },
+            ],
+            buttons: [
+                'csv', {
+
+                    extend: 'excelHtml5',
+                    title: 'Payment_Detail_Report'
+                }, 'pdf'
+            ]
+        });
+    });
+</script>

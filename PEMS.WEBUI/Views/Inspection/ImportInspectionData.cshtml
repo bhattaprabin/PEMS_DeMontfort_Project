@@ -1,0 +1,143 @@
+﻿@model PEMS.BusinessLayer.InspectionModel.InspectionViewModel
+@{
+    ViewBag.Title = "Add Inspection";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inspection</a></li>
+            <li class="breadcrumb-item active">@ViewBag.Title</li>
+        </ul>
+    </div>
+</div>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="../ExcelFiles/SampleFiles/InspectionUploadSample.xlsx" class="dropdown-item">
+                                <i class="fa fa-file mr-2"></i>Download Excel Template
+                            </a>
+                            <hr />
+                            @using (Html.BeginForm("ImportInspectionData", "Inspection", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "validateForm(event)", onsuccess = "SuccessMessage()" }))
+                            {
+                                @Html.ValidationSummary(true)
+                                <div class="card-body">
+                                    <div class="row">
+                                        @{
+                                            var stateList = new List<SelectListItem>();
+                                            stateList.Add(new SelectListItem() { Text = "---Select State---", Value = "0" });
+                                            stateList.Add(new SelectListItem() { Text = "Leicestershire", Value = "1" });
+                                        }
+                                        <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            @Html.DropDownListFor(m => m.StateId, stateList, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                        </div>
+                                        @{
+                                            var cityList = new List<SelectListItem>();
+                                            cityList.Add(new SelectListItem() { Text = "---Select City---", Value = "0" });
+                                            cityList.Add(new SelectListItem() { Text = "Leicester", Value = "1" });
+                                            cityList.Add(new SelectListItem() { Text = "Hinckley", Value = "2" });
+                                        }
+                                        <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            @Html.DropDownListFor(m => m.CityId, cityList, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="fileUpload btn btn-browse btn btn-info btn-sm">
+                                                <input id="file" type="file" name="file" class="upload" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-4 col-xs-12 control-label">
+                                            <input type="submit" class="btn btn-success" value="Upload" id="linkd" />
+                                        </div>
+                                    </div>
+                                </div>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <table id="inspectionFilesID" class="display" style="width:100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function () {
+        $('#inspectionFilesID').DataTable({
+            "ajax": {
+                "url": "/Inspection/GetInspectionUploadedFile",
+                "type": "GET",
+                "datatype":"json"
+            },
+            dom: 'Bfrtip',
+            columns: [
+                { title: 'File Id', data: "FileId"},
+                { title: 'State', data: "StateName" },
+                { title: 'City', data: "CityName" },
+                { title: 'FileName', data: "FileName" },
+                { title: 'Total Records', data: "CountRecords" },
+                 {
+                     title: 'Action', data: "FileId", render: function (data, type, full, meta) {
+                    @*var hReF1 = '@Url.Action("ManageDTCONewDataEdit", "DTCOFileImport", null)?id2=' + full[1].Value +
+                        '&noise=' + Math.floor(5000 + Math.random() * 10000);*@
+                        debugger;
+                        var inspectionFilesEditDeleteLink = '';
+                         inspectionFilesEditDeleteLink = '<input type="submit" value="Edit" class="btn btn-info" style="margin-right:5px;"/>'
+                             + '<input type="submit" value="Delete" class="btn btn-danger" />';
+                         return inspectionFilesEditDeleteLink;
+                    }
+                },
+            ],
+            buttons: [
+                'pdf',
+                'excel',
+                'print',
+                'csv'
+            ]
+        });
+    });
+    function spaceTrim(x) {
+        return x.replace(/^\s+|\s+$/gm, '');
+    }
+    function validateForm(event) {
+        debugger;
+        if (spaceTrim($("#StateId").val()) == "0") {
+            //alert("Please select State.");
+            toastr.error("Please select State...!!", "Error");
+            event.preventDefault();
+            return false;
+        }
+        if (spaceTrim($("#CityId").val()) == "0") {
+            toastr.error("Please select City...!!", "Error");
+            event.preventDefault();
+            return false;
+        }
+        if (spaceTrim($("#file").val()) == "") {
+            toastr.error("Please select file to Upload...!!", "Error");
+            event.preventDefault();
+            return false;
+        }
+    }
+    function SuccessMessage() {
+        toastr.success("File uploaded successfully", "Success");
+    }
+</script>

@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEMS</title>
+    <link href="~/Dashboard/css/LandingPage.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="~/Dashboard/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
+
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>
+                                List of Emergency Contact
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <table id="emergencyContactID" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>
+
+                            <a data-toggle="collapse" aria-expanded="false" href="#emailTxtBoxId">
+                                If you want to receive emergency alert Messages. Register your email by clicking this text.
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="collapse multi-collapse" id="emailTxtBoxId">
+                        <input type="email" id="txtEmailAddress" style="margin-right:20px;" placeholder=" Eg: email@gmail.com" />
+                        <button id="AddBtn" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    var dataSet = [
+        ['101', 'The non-emergency number for the police', 'nonemergency@gmail.com'],
+        ['111', 'National Non Emergency Medical Number', 'nonemergencymedical@gmail.com'],
+        ['112', 'The non-emergency number for the police', 'nonemergencyforpolice@gmail.com'],
+        ['999', 'Emergency Number', 'emergency@gmail.com'],
+    ];
+    $(document).ready(function () {
+        $('#emergencyContactID').DataTable({
+            data: dataSet,
+            dom: 'Bfrtip',
+            columns: [
+                { title: 'Contact Number' },
+                { title: 'Name' },
+                { title: 'Email' },
+            ],
+            buttons: [
+                'pdf',
+                'excel',
+                'print',
+                'csv'
+            ]
+        });
+    });
+    function spaceTrim(x) {
+        return x.replace(/^\s+|\s+$/gm, '');
+    }
+    function ValidateEmail(emailId)
+    {
+        //debugger;
+        //    var mailformat = '';
+        //   if (emailId.value.match(/^\w+([\.-]?\w+)*\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+        //     {
+        //       return true;
+        //     }
+        //    else
+        //      {
+        //       toastr.error("Email Address is not valid.", "Error");
+        //       $("#txtEmailAddress").focus();
+        //       return false;
+        //      }
+     }
+       $("#AddBtn").on("click", function () {
+        var emailId = $("#txtEmailAddress").val();
+        if (spaceTrim(emailId) == "") {
+            toastr.error("Email Address is required", "Error");
+            event.preventDefault();
+            return false;
+        }
+        //ValidateEmail(emailId);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveEmailsForAlert", "Home")?EmailId=' + emailId,
+                data: param = "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                toastr.success("Email saved successfully", "Success");
+                $("#txtEmailAddress").val('');
+            }
+
+            function errorFunc() {
+                toastr.error("Failed to save email. Please submit again.", "Error");
+            }
+    });
+</script>
